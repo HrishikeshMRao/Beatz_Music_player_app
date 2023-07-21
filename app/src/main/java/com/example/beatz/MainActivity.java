@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.os.Parcel;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
+import com.karumi.dexter.DexterBuilder;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
@@ -57,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
@@ -102,6 +103,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            textView.setText(String.valueOf(seekBar.getScrollY()));
+        }
+        if(button.getText()=="play")
+        {
+
+            //seekBar.set(mediaPlayer.getCurrentPosition(),1);
+
+        }
 
 
     }
